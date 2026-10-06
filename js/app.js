@@ -17,7 +17,7 @@ function loadStore(){
   return {
     name:'', avatar:'🦁', points:0, games:0, stars:0,
     best:{math:0,arabic:0,english:0,science:0},
-    badges:[], board:[], soundOn:true
+    badges:[], board:[], soundOn:true, theme:'day'
   };
 }
 function save(){ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }
@@ -287,19 +287,33 @@ function resetAll(){
 }
 
 // ---------- توليد سؤال ----------
+function drawFromDeck(key, bank){
+  // سحب بدون تكرار داخل الجولة: نستهلك نسخة مخلوطة، وعند نفادها نعيد الخلط
+  if(!game.deck[key] || !game.deck[key].length){
+    game.deck[key]=shuffle([...bank]);
+  }
+  return game.deck[key].pop();
+}
+
 function makeQuestion(subject, level){
   if(subject==='math'){
-    const m=genMath(level);
+    // توليد بدون تكرار داخل الجولة
+    if(!game.usedMath) game.usedMath=new Set();
+    let m, tries=0;
+    do{
+      m=genMath(level); tries++;
+    }while(game.usedMath.has(m.text) && tries<25);
+    game.usedMath.add(m.text);
     return {text:m.text, emoji:m.emoji, answer:m.answer, options:m.options.map(String), speak:null};
   }
   if(subject==='arabic'){
     const bank=ARABIC_BANK[level]||ARABIC_BANK.easy;
-    const q=bank[Math.floor(Math.random()*bank.length)];
+    const q=drawFromDeck('bank', bank);
     return {text:q.q, emoji:q.emoji, answer:q.a, options:shuffle([...q.opts]), speak:null};
   }
   if(subject==='english'){
     const bank=ENGLISH_BANK[level]||ENGLISH_BANK.easy;
-    const q=bank[Math.floor(Math.random()*bank.length)];
+    const q=drawFromDeck('bank', bank);
     const others=shuffle(bank.filter(x=>x.word!==q.word)).slice(0,3).map(x=>x.word);
     const mode=Math.random()<0.5? 'en':'ar';
     if(mode==='en'){
@@ -310,7 +324,7 @@ function makeQuestion(subject, level){
   }
   // science
   const bank=SCIENCE_BANK[level]||SCIENCE_BANK.easy;
-  const q=bank[Math.floor(Math.random()*bank.length)];
+  const q=drawFromDeck('bank', bank);
   return {text:q.q, emoji:q.emoji, answer:q.a, options:shuffle([...q.opts]), speak:null};
 }
 
@@ -320,7 +334,7 @@ const LEVEL_NAMES={easy:'😊 سهل',medium:'🤩 وسط',hard:'🚀 صعب'};
 
 function startGame(subject, level){
   sfx.click();
-  game={subject,level,qIndex:0,score:0,streak:0,maxStreak:0,correct:0,current:null};
+  game={subject,level,qIndex:0,score:0,streak:0,maxStreak:0,correct:0,current:null,deck:{},usedMath:new Set()};
   timeLeft = level==='hard'?15:20;
   $('games').classList.add('hidden');
   $('resultSection').classList.add('hidden');
@@ -477,8 +491,21 @@ function launchConfetti(){
   })();
 }
 
+// ---------- الوضع النهاري / الليلي ----------
+function applyTheme(){
+  const t = store.theme || 'day';
+  document.documentElement.setAttribute('data-theme', t);
+  const b=$('themeBtn');
+  if(b) b.textContent = t==='night' ? '☀️' : '🌙';
+}
+function toggleTheme(){
+  store.theme = (store.theme==='night') ? 'day' : 'night';
+  save(); applyTheme(); sfx.click();
+}
+
 // ---------- التهيئة ----------
 document.addEventListener('DOMContentLoaded',()=>{
+  applyTheme();
   refreshUI();
 
   // الترحيب
@@ -509,6 +536,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('soundBtn').onclick=()=>{
     soundOn=!soundOn; store.soundOn=soundOn; save(); refreshUI(); sfx.click();
   };
+  const tb=$('themeBtn'); if(tb) tb.onclick=toggleTheme;
   // رسائل لولو
   let mi=0;
   setInterval(()=>{

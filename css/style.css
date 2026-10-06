@@ -1,5 +1,8 @@
 *{box-sizing:border-box}
-body{margin:0;font-family:'Baloo Bhaijaan 2',system-ui,sans-serif;background:#FFF6E9;color:#33302b}
+:root{--bg:#FFF6E9;--card:#fff;--ink:#33302b;--muted:#78716C;--qbox:#FFFBEB;--bar:#E7E5E4}
+[data-theme="night"]{--bg:#16213A;--card:#1F2B4D;--ink:#F5F0E1;--muted:#B8C0D8;--qbox:#243154;--bar:#0F1830}
+[data-theme="night"] body{background:var(--bg);color:var(--ink)}
+body{margin:0;font-family:'Baloo Bhaijaan 2',system-ui,sans-serif;background:var(--bg);color:var(--ink);transition:background .25s,color .25s}
 .container{max-width:900px;margin:0 auto;padding:0 14px}
 .hidden{display:none!important}
 
@@ -86,6 +89,18 @@ body{margin:0;font-family:'Baloo Bhaijaan 2',system-ui,sans-serif;background:#FF
 .badge-item.locked{filter:grayscale(1);opacity:.5}
 .badge-item.unlocked{background:#FEF9C3}
 #confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:200}
+
+/* الوضع الليلي */
+[data-theme="night"] .top,[data-theme="night"] .hello,[data-theme="night"] .kid-card,[data-theme="night"] .play-box,[data-theme="night"] .modal,[data-theme="night"] .q-box{border-color:#0B1226}
+[data-theme="night"] .top{background:#1F2B4D}
+[data-theme="night"] .hello,[data-theme="night"] .kid-card,[data-theme="night"] .play-box,[data-theme="night"] .modal{background:var(--card);color:var(--ink);box-shadow:0 8px 0 #0B1226}
+[data-theme="night"] .big-play,[data-theme="night"] .play-btn,[data-theme="night"] .round-btn,[data-theme="night"] .kid-chip,[data-theme="night"] .stars,[data-theme="night"] .answer-btn{border-color:#0B1226}
+[data-theme="night"] .q-box{background:var(--qbox)}
+[data-theme="night"] .answer-btn{background:#2C3A63;color:#fff}
+[data-theme="night"] .bar{background:var(--bar);border-color:#0B1226}
+[data-theme="night"] .hello p,[data-theme="night"] .kid-card p,[data-theme="night"] .q-count,[data-theme="night"] .foot{color:var(--muted)}
+[data-theme="night"] .score-line,[data-theme="night"] .speech,[data-theme="night"] .board-list li{color:#33302b}
+[data-theme="night"] .kid-input{background:#fff}
 
 @media(max-width:640px){
   .kids-grid{grid-template-columns:1fr}
