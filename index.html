@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>امرح وتعلّم | العب وتعلّم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦁</text></svg>">
+</head>
+<body>
+
+<header class="top">
+  <div class="container top-in">
+    <div class="logo">🦁 <b>امرح وتعلّم</b></div>
+    <div class="top-btns">
+      <div class="stars">⭐ <b id="totalPoints">0</b></div>
+      <button class="round-btn" id="soundBtn">🔊</button>
+      <button class="round-btn" id="leaderboardBtn">🏆</button>
+      <button class="kid-chip" id="profileChip"><span id="profileAvatar">😊</span> <span id="profileName">صديقنا</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="modal-overlay" id="welcomeModal">
+  <div class="modal kid-modal">
+    <div class="lion-big">🦁</div>
+    <h2>أهلاً يا بطل!</h2>
+    <p>ما اسمك؟</p>
+    <input id="playerNameInput" maxlength="15" placeholder="اكتب اسمك" class="kid-input">
+    <p>اختر وجهك:</p>
+    <div class="avatar-grid" id="avatarGrid">
+      <button data-avatar="🦁">🦁</button>
+      <button data-avatar="🐵">🐵</button>
+      <button data-avatar="🐰">🐰</button>
+      <button data-avatar="🐼">🐼</button>
+      <button data-avatar="🦊">🦊</button>
+      <button data-avatar="🐘">🐘</button>
+      <button data-avatar="🦜">🦜</button>
+      <button data-avatar="🦄">🦄</button>
+    </div>
+    <button class="big-play" id="startJourneyBtn">هيا نلعب! ▶</button>
+  </div>
+</div>
+
+<main class="container">
+  <section class="hello">
+    <div class="hello-text">
+      <h1>هيا نلعب ونتعلم! 🎉</h1>
+      <p>اختر لعبة واضغط عليها. سهلة وممتعة!</p>
+      <a href="#games" class="big-play">🎮 اختر لعبتك</a>
+      <div class="mini-stats">
+        <div>⭐ <b id="statPoints">0</b> نقطة</div>
+        <div>🎮 <b id="statGames">0</b> لعبة</div>
+        <div>🌟 <b id="statStars">0</b> نجمة</div>
+        <button class="mini-link" onclick="openModal('badgesModal')">🎖️ شاراتي <span id="badgesCount">0/8</span></button>
+      </div>
+    </div>
+    <div class="hello-pic">
+      <div class="mascot">🦁</div>
+      <div class="speech" id="mascotBubble">اضغط على أي لعبة! 👇</div>
+    </div>
+  </section>
+
+  <section id="games">
+    <h2 class="games-title">العابنا 🎈</h2>
+
+    <div class="kids-grid">
+      <div class="kid-card green">
+        <div class="kid-emoji">🔢</div>
+        <h3>الأرقام</h3>
+        <p>اجمع واطرح!</p>
+        <span class="kid-best" id="best-math">⭐ 0</span>
+        <button class="play-btn" onclick="startGame('math','easy')">😊 سهل</button>
+        <button class="play-btn mid" onclick="startGame('math','medium')">🤩 وسط</button>
+        <button class="play-btn hard" onclick="startGame('math','hard')">🚀 صعب</button>
+      </div>
+
+      <div class="kid-card orange">
+        <div class="kid-emoji">📖</div>
+        <h3>الحروف</h3>
+        <p>كلمات عربية!</p>
+        <span class="kid-best" id="best-arabic">⭐ 0</span>
+        <button class="play-btn" onclick="startGame('arabic','easy')">😊 سهل</button>
+        <button class="play-btn mid" onclick="startGame('arabic','medium')">🤩 وسط</button>
+        <button class="play-btn hard" onclick="startGame('arabic','hard')">🚀 صعب</button>
+      </div>
+
+      <div class="kid-card blue">
+        <div class="kid-emoji">🔤</div>
+        <h3>English</h3>
+        <p>كلمات إنجليزية!</p>
+        <span class="kid-best" id="best-english">⭐ 0</span>
+        <button class="play-btn" onclick="startGame('english','easy')">😊 سهل</button>
+        <button class="play-btn mid" onclick="startGame('english','medium')">🤩 وسط</button>
+        <button class="play-btn hard" onclick="startGame('english','hard')">🚀 صعب</button>
+      </div>
+
+      <div class="kid-card pink">
+        <div class="kid-emoji">🔬</div>
+        <h3>العلوم</h3>
+        <p>اكتشف العالم!</p>
+        <span class="kid-best" id="best-science">⭐ 0</span>
+        <button class="play-btn" onclick="startGame('science','easy')">😊 سهل</button>
+        <button class="play-btn mid" onclick="startGame('science','medium')">🤩 وسط</button>
+        <button class="play-btn hard" onclick="startGame('science','hard')">🚀 صعب</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="playSection" class="hidden play-box">
+    <div class="play-top">
+      <button class="round-btn" onclick="exitGame()">✕</button>
+      <b id="playTitle">الأرقام</b>
+      <span id="playLevel" class="lvl-tag">سهل</span>
+      <b id="timerCircle" class="timer">20</b>
+    </div>
+    <div class="bar"><div id="progressFill"></div></div>
+    <p id="progressText" class="q-count">1 / 10</p>
+    <div class="q-box">
+      <div class="q-emoji" id="qEmoji">🔢</div>
+      <h3 id="qText">...</h3>
+      <button id="speakBtn" class="hidden round-btn">🔊</button>
+      <div class="answers-grid" id="answersGrid"></div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+    <div class="score-line">⭐ <b id="currentScore">0</b> &nbsp; • &nbsp; 🔥 <b id="streak">0</b></div>
+  </section>
+
+  <section id="resultSection" class="hidden play-box center">
+    <div class="result-emoji" id="resultEmoji">🏆</div>
+    <h2 id="resultTitle">أحسنت!</h2>
+    <p id="resultMsg"></p>
+    <div class="result-stars" id="resultStars">⭐⭐⭐</div>
+    <br>
+    <button class="big-play" id="replayBtn">🔄 مرة ثانية</button>
+    <button class="big-play yellow" onclick="exitGame(true)">🎈 ألعاب أخرى</button>
+  </section>
+
+  <details class="for-parents">
+    <summary>👨‍👩‍👧 اضغط هنا إذا كنت أب أو أم</summary>
+    <p>• آمنة: كل البيانات في جهازك فقط.<br>• ١٠ أسئلة فقط في الجولة (٥ دقائق).<br>• تناسب 6-12 سنة.<br><button class="mini-link" onclick="resetAll()">مسح البيانات</button></p>
+  </details>
+</main>
+
+<footer class="foot">🦁 امرح وتعلّم 2026 • بحب لأطفالنا ❤️</footer>
+
+<div class="modal-overlay hidden" id="leaderboardModal">
+  <div class="modal kid-modal">
+    <h2>🏆 الأبطال</h2>
+    <ol class="board-list" id="boardList"></ol>
+    <button class="big-play" onclick="closeModal('leaderboardModal')">تم!</button>
+    <button class="mini-link" onclick="clearBoard()">مسح</button>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="badgesModal">
+  <div class="modal kid-modal">
+    <h2>🎖️ شاراتي</h2>
+    <div class="badges-grid" id="badgesGrid"></div>
+    <button class="big-play" onclick="closeModal('badgesModal')">ياي!</button>
+  </div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+<script src="js/app.js"></script>
+</body>
+</html>

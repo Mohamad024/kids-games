@@ -1,0 +1,96 @@
+*{box-sizing:border-box}
+body{margin:0;font-family:'Baloo Bhaijaan 2',system-ui,sans-serif;background:#FFF6E9;color:#33302b}
+.container{max-width:900px;margin:0 auto;padding:0 14px}
+.hidden{display:none!important}
+
+/* header */
+.top{position:sticky;top:0;z-index:50;background:#fff;border-bottom:4px solid #FFD93D}
+.top-in{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;gap:8px;flex-wrap:wrap}
+.logo{font-size:1.4rem;font-weight:800}
+.stars{background:#FFF3B0;border:3px solid #33302b;border-radius:999px;padding:4px 14px;font-size:1.1rem}
+.top-btns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.round-btn{width:48px;height:48px;font-size:1.4rem;background:#fff;border:3px solid #33302b;border-radius:50%;cursor:pointer}
+.kid-chip{border:3px solid #33302b;background:#DCFCE7;border-radius:999px;padding:6px 14px;font-family:inherit;font-weight:800;font-size:1rem;cursor:pointer}
+
+/* buttons */
+.big-play{display:inline-block;background:#22C55E;color:#fff;border:4px solid #33302b;border-radius:20px;padding:14px 28px;font-family:inherit;font-weight:800;font-size:1.3rem;cursor:pointer;box-shadow:0 6px 0 #33302b;margin:6px;text-decoration:none;text-align:center}
+.big-play:active{transform:translateY(4px);box-shadow:0 2px 0 #33302b}
+.big-play.yellow{background:#FFD93D;color:#33302b}
+.play-btn{display:block;width:100%;margin:7px 0;border:3px solid #33302b;border-radius:16px;padding:12px;font-family:inherit;font-weight:800;font-size:1.15rem;cursor:pointer;background:#DCFCE7}
+.play-btn.mid{background:#FEF9C3}.play-btn.hard{background:#FFE4E6}
+.mini-link{background:none;border:none;font-family:inherit;font-weight:800;color:#16A34A;cursor:pointer;font-size:1rem;text-decoration:underline}
+
+/* welcome */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:grid;place-items:center;z-index:100;padding:14px}
+.modal{background:#fff;border:4px solid #33302b;border-radius:28px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow:auto;text-align:center}
+.lion-big{font-size:4rem}
+.kid-modal h2{margin:4px 0;font-size:1.8rem}
+.kid-input{width:100%;border:4px solid #33302b;border-radius:16px;padding:14px;font-size:1.3rem;font-family:inherit;text-align:center}
+.avatar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+.avatar-grid button{font-size:2.2rem;background:#FFF7ED;border:3px solid #33302b;border-radius:16px;padding:8px;cursor:pointer}
+.avatar-grid button.selected{background:#FFD93D;transform:scale(1.1)}
+
+/* hello */
+.hello{display:flex;gap:14px;align-items:center;background:#fff;border:4px solid #33302b;border-radius:28px;padding:20px;margin-top:16px;box-shadow:0 8px 0 #FFD93D}
+.hello-text{flex:1}
+.hello h1{margin:0;font-size:2rem;line-height:1.4}
+.hello p{font-size:1.15rem;color:#78716C;margin:6px 0 10px}
+.mini-stats{display:flex;gap:12px;flex-wrap:wrap;font-weight:800;margin-top:8px;align-items:center}
+.hello-pic{text-align:center}
+.mascot{font-size:5rem;animation:jump 2s infinite}
+@keyframes jump{50%{transform:translateY(-12px)}}
+.speech{background:#FEF9C3;border:3px solid #33302b;border-radius:16px;padding:6px 12px;font-weight:800;margin-top:6px}
+
+/* games */
+.games-title{text-align:center;font-size:1.8rem;margin:22px 0 10px}
+.kids-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.kid-card{background:#fff;border:4px solid #33302b;border-radius:26px;padding:16px;text-align:center;box-shadow:0 8px 0 #33302b}
+.kid-card.green{border-top:12px solid #22C55E}
+.kid-card.orange{border-top:12px solid #FB923C}
+.kid-card.blue{border-top:12px solid #38BDF8}
+.kid-card.pink{border-top:12px solid #F472B6}
+.kid-emoji{font-size:3.5rem}
+.kid-card h3{margin:4px 0;font-size:1.5rem}
+.kid-card p{margin:0 0 6px;color:#78716C;font-size:1rem}
+.kid-best{display:inline-block;background:#F5F5F4;border-radius:999px;padding:2px 12px;font-weight:800;margin-bottom:6px}
+
+/* play */
+.play-box{background:#fff;border:4px solid #33302b;border-radius:26px;padding:16px;margin-top:18px;box-shadow:0 8px 0 #38BDF8}
+.play-box.center{text-align:center}
+.play-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:1.2rem}
+.lvl-tag{background:#FFD93D;border:2px solid #33302b;border-radius:999px;padding:0 12px;font-size:.95rem}
+.timer{background:#33302b;color:#fff;border-radius:999px;padding:2px 16px}
+.bar{background:#E7E5E4;border-radius:999px;height:16px;overflow:hidden;margin:12px 0 4px;border:2px solid #33302b}
+.bar div{background:#22C55E;height:100%;transition:width .3s}
+.q-count{text-align:center;font-weight:800;margin:0;color:#78716C}
+.q-box{text-align:center;background:#FFFBEB;border:3px dashed #33302b;border-radius:20px;padding:16px;margin-top:8px}
+.q-emoji{font-size:3.2rem}
+.q-box h3{font-size:1.5rem;margin:8px 0}
+.answers-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.answer-btn{font-family:inherit;font-size:1.4rem;font-weight:800;background:#fff;border:4px solid #33302b;border-radius:18px;padding:18px;cursor:pointer;min-height:72px}
+.answer-btn.correct{background:#BBF7D0!important}
+.answer-btn.wrong{background:#FECACA!important}
+.feedback{min-height:28px;font-weight:800;font-size:1.15rem;margin-top:8px}
+.score-line{text-align:center;font-size:1.2rem;font-weight:800;background:#FEF9C3;border-radius:14px;padding:8px;margin-top:10px}
+.result-emoji{font-size:4rem}
+.result-stars{font-size:2.2rem}
+
+.for-parents{margin:18px 0;background:#F5F5F4;border-radius:16px;padding:12px;font-size:.95rem}
+.foot{text-align:center;padding:16px;color:#78716C;font-weight:700}
+
+.board-list{padding:0;list-style:none;text-align:right}
+.board-list li{background:#FFFBEB;border:3px solid #33302b;border-radius:14px;margin:6px 0;padding:8px 12px;font-weight:800;display:flex;justify-content:space-between}
+.badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+.badge-item{border:3px solid #33302b;border-radius:14px;padding:8px;font-size:1.8rem;background:#FAFAF9}
+.badge-item small{display:block;font-size:.6rem;font-weight:800}
+.badge-item.locked{filter:grayscale(1);opacity:.5}
+.badge-item.unlocked{background:#FEF9C3}
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:200}
+
+@media(max-width:640px){
+  .kids-grid{grid-template-columns:1fr}
+  .hello{flex-direction:column;text-align:center}
+  .hello h1{font-size:1.6rem}
+  .answers-grid{grid-template-columns:1fr}
+  .big-play{width:100%;margin:6px 0}
+}
